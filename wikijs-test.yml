@@ -1,0 +1,45 @@
+databases:
+- engine: PG
+  name: db
+  num_nodes: 1
+  size: db-s-dev-database
+  version: "12"
+name: wikijs-test
+region: lon
+services:
+- envs:
+  - key: DB_TYPE
+    scope: RUN_TIME
+    value: postgres
+  - key: DB_HOST
+    scope: RUN_TIME
+    value: ${db.HOSTNAME}
+  - key: DB_PORT
+    scope: RUN_TIME
+    value: ${db.PORT}
+  - key: DB_USER
+    scope: RUN_TIME
+    value: ${db.USERNAME}
+  - key: DB_PASS
+    scope: RUN_TIME
+    value: ${db.PASSWORD}
+  - key: DB_NAME
+    scope: RUN_TIME
+    value: ${db.DATABASE}
+  - key: DB_SSL
+    scope: RUN_TIME
+    value: "1"
+  - key: DB_SSL_CA
+    scope: RUN_TIME
+    value: ${db.CA_CERT}
+  http_port: 3000
+  image:
+    registry: requarks
+    registry_type: DOCKER_HUB
+    repository: wiki
+    tag: "2"
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: wiki
+  routes:
+  - path: /
