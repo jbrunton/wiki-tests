@@ -29,7 +29,7 @@ services:
   - key: DB_SSL
     scope: RUN_TIME
     value: "1"
-  - key: DB_SSL_CA
+  - key: DB_ORIG_CA
     scope: RUN_TIME
     value: ${db.CA_CERT}
   http_port: 3000
@@ -43,3 +43,4 @@ services:
   name: wiki
   routes:
   - path: /
+  

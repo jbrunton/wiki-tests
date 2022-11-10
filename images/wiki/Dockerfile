@@ -1,7 +1,7 @@
-FROM node:16
+FROM requarks/wiki:2
 
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["echo", "Hello"]
+CMD ["node", "server"]
