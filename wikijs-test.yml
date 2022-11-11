@@ -1,6 +1,7 @@
 domains:
   - domain: wikijs.wiki-tests.jbrunton-do.com
     type: PRIMARY
+    zone: jbrunton-do.com
 databases:
   - engine: PG
     name: db
