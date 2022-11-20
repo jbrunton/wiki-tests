@@ -1,0 +1,51 @@
+databases:
+- cluster_name: db-mysql-lon1-bookstack
+  engine: MYSQL
+  name: db
+  num_nodes: 1
+  production: true
+domains:
+- domain: bookstack.wiki-tests.jbrunton-do.com
+  type: PRIMARY
+  zone: jbrunton-do.com
+name: bookstack-test
+region: lon
+services:
+- envs:
+  - key: APP_URL
+    scope: RUN_TIME
+    value: https://bookstack.wiki-tests.jbrunton-do.com
+  - key: DB_HOST
+    scope: RUN_TIME
+    value: ${db.HOSTNAME}
+  - key: DB_PORT
+    scope: RUN_TIME
+    value: ${db.PORT}
+  - key: DB_USER
+    scope: RUN_TIME
+    value: ${db.USERNAME}
+  - key: DB_PASS
+    scope: RUN_TIME
+    value: ${db.PASSWORD}
+  - key: DB_DATABASE
+    scope: RUN_TIME
+    value: ${db.DATABASE}
+  - key: GOOGLE_APP_ID
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:Tofh/Ep2Jvu1ZQS98L09ju9z5rziI89X:7zbcv6KjkulHCEglaVMvPuECKhulQZVnmHCRf4B9fKTAbtCmuh08lFI/UxzTG5gANRdyrrXOudte0cjAouyFYfs2cP0QD/J0V4JUNWj0qOuX+Qu4w6hLew==]
+  - key: GOOGLE_APP_SECRET
+    scope: RUN_TIME
+    type: SECRET
+    value: EV[1:PYVXdq7wGsK+6XkWfe6BgDX7U9nhtoqQ:djN3xNUfDwNLHZZC9cFc6I7XQMTm0MQ777De4V7uoCXMYlwwjRT0vFkU8mhZgOWAefg/]
+  http_port: 80
+  image:
+    registry: linuxserver
+    registry_type: DOCKER_HUB
+    repository: bookstack
+    tag: latest
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: bookstack
+  routes:
+  - path: /
